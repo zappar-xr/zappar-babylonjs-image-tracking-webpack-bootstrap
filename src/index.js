@@ -1,7 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import * as ZapparBabylon from '@zappar/zappar-babylonjs';
-
 import "./style.css";
+
 
 
 // Setup BabylonJS in the usual way
@@ -26,7 +26,9 @@ ZapparBabylon.permissionRequestUI().then((granted) => {
 });
 
 
-const imageTracker = new ZapparBabylon.ImageTrackerLoader().load(require("file-loader!./example-tracking-image.zpt").default);
+const url = new URL("./example-tracking-image.zpt", import.meta.url).href;
+const imageTracker = new ZapparBabylon.ImageTrackerLoader().load(url);
+
 const trackerTransformNode = new ZapparBabylon.ImageAnchorTransformNode('tracker', camera, imageTracker, scene);
 
 // Add some content to the image tracker
